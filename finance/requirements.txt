@@ -2,3 +2,13 @@ cs50
 Flask
 Flask-Session
 requests
+csv
+datetime
+pytz
+requests
+subprocess
+urllib
+uuid
+Flask
+cs50
+werkzeug
