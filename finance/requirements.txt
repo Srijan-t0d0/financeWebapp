@@ -5,7 +5,6 @@ requests
 datetime
 pytz
 requests
-subprocess
 urllib
 uuid
 werkzeug
