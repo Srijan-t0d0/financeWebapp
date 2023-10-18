@@ -4,7 +4,7 @@ from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session , current_app
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
-
+from flask_limiter import Limiter
 from helpers import apology, login_required, lookup, usd
 
 # Configure application
@@ -21,6 +21,15 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
+# Initialize the Flask-Limiter extension
+limiter = Limiter(app)
+
+# Rate limiting configurations
+# You can adjust these settings as needed
+limiter.limit("5 per minute")(app.route("/buy", methods=["POST"]))
+limiter.limit("5 per minute")(app.route("/sell", methods=["POST"]))
+limiter.limit("5 per minute")(app.route("/login", methods=["POST"]))
+limiter.limit("5 per minute")(app.route("/register", methods=["POST"]))
 
 @app.after_request
 def after_request(response):
@@ -46,7 +55,7 @@ def index():
     cash = user_info[0]["cash"]
     total = sum(stock["value"] for stock in portfolio_data) + cash
 
-
+    current_app.logger.debug(session["user_id"])
     return render_template("home.html" , portfolio = portfolio_data ,cash = f"{cash:.2f}" , total = f"{total:.2f}")
 
 
@@ -229,6 +238,7 @@ def register():
             )
             rows = db.execute("SELECT * FROM users WHERE username = ?", username)
             session["user_id"] = rows[0]["id"]
+            current_app.logger.info(rows[0]["id"] , username)
             return redirect("/")
 
     else:
