@@ -1,15 +1,13 @@
 # Finance Web Application
 
 This is a personal finance web application developed using Flask. It allows users to manage their investment portfolio, buy and sell stocks, and view transaction history.
+The website is hosted [Link to Finance Web App](https://financewebapp.onrender.com)
 
 ## Table of Contents
 
 - [Description](#description)
 - [Features](#features)
 - [Requirements](#requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
 
 ## Description
 
