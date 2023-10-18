@@ -7,6 +7,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_limiter import Limiter
 from helpers import apology, login_required, lookup, usd
 
+from flask_limiter.util import get_remote_address
+
 # Configure application
 app = Flask(__name__)
 
@@ -22,7 +24,7 @@ Session(app)
 db = SQL("sqlite:///finance.db")
 
 # Initialize the Flask-Limiter extension
-limiter = Limiter(app)
+limiter = Limiter(get_remote_address ,app = app)
 
 # Rate limiting configurations
 # You can adjust these settings as needed
