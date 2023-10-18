@@ -216,7 +216,7 @@ def quote():
     else:
         return render_template("quote_get.html")
 
-
+@limiter.limit
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
