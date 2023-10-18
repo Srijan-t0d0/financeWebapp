@@ -7,3 +7,4 @@ werkzeug
 flask
 flask-session
 gunicorn
+flask_limiter
