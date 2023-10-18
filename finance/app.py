@@ -238,7 +238,7 @@ def register():
             )
             rows = db.execute("SELECT * FROM users WHERE username = ?", username)
             session["user_id"] = rows[0]["id"]
-            current_app.logger.info(rows[0]["id"] , username)
+            current_app.logger.info(f"user_id: {rows[0]['id']}, username: {username}")
             return redirect("/")
 
     else:
