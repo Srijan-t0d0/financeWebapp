@@ -6,3 +6,4 @@ cs50
 werkzeug
 flask
 flask-session
+gunicorn
